@@ -229,7 +229,7 @@ body {
     <h1>General Chemistry Quiz</h1>
     <p class="subtitle">كيمياء عامة · مراجعة شاملة</p>
     <p class="credits">Questions Bank — General Chemistry Revision<br>
-      <span class="credits-names">𝑩𝒀 𝑴𝑶𝑺𝑻𝑨𝑭𝑨 𝑺𝑨𝑳𝑳𝑨𝑴&زعزع</span></p>
+      <span class="credits-names">𝑩𝒀 𝑴𝑶𝑺𝑻𝑨𝑭𝑨 𝑺𝑨𝑳𝑳𝑨𝑴</span></p>
     <p class="section-label">Choose Topic / اختر الوحدة</p>
     <div class="filter-group">
       <button class="filter-btn active" onclick="selectCat('all',this)">📚 All</button>
@@ -465,4 +465,155 @@ const ALL = [
   {n:153, cat:'truefalse', q:"Cations are negatively charged ions.", opts:["True","False"], c:1, tf:true, exp:"False — cations are POSITIVELY charged (lost electrons). Anions are negatively charged."},
   {n:154, cat:'truefalse', q:"Anions are negatively charged ions.", opts:["True","False"], c:0, tf:true, exp:"True — anions gain electrons → negative charge. Memory: AN-ion = A Negative ion."},
   {n:155, cat:'truefalse', q:"When an atom loses electrons it becomes a cation.", opts:["True","False"], c:0, tf:true, exp:"True — losing electrons = fewer negative charges → net positive charge → cation."},
-  {n:156, cat:'truefalse', q:"When an atom gains electrons it becom
+  {n:156, cat:'truefalse', q:"When an atom gains electrons it becomes an anion.", opts:["True","False"], c:0, tf:true, exp:"True — gaining electrons = more negative charges → net negative charge → anion."},
+  {n:157, cat:'truefalse', q:"Na⁺ is an example of a cation.", opts:["True","False"], c:0, tf:true, exp:"True — Na⁺ lost one electron → positively charged → cation."},
+  {n:158, cat:'truefalse', q:"Cl⁻ is an example of an anion.", opts:["True","False"], c:0, tf:true, exp:"True — Cl⁻ gained one electron → negatively charged → anion."},
+  {n:159, cat:'truefalse', q:"Chemical nomenclature is the system used to name chemical compounds.", opts:["True","False"], c:0, tf:true, exp:"True — nomenclature = naming system. IUPAC provides systematic rules for naming compounds."},
+  {n:160, cat:'truefalse', q:"Binary compounds contain three elements.", opts:["True","False"], c:1, tf:true, exp:"False — binary compounds contain exactly TWO elements (e.g. NaCl, H₂O, CO₂)."},
+  {n:161, cat:'truefalse', q:"Acids release H⁺ ions in solution.", opts:["True","False"], c:0, tf:true, exp:"True — Arrhenius definition: acids produce H⁺ (protons) in aqueous solution."},
+  {n:162, cat:'truefalse', q:"Bases release OH⁻ ions in solution.", opts:["True","False"], c:0, tf:true, exp:"True — Arrhenius definition: bases produce OH⁻ (hydroxide ions) in aqueous solution."},
+  {n:163, cat:'truefalse', q:"HCl is an example of an acid.", opts:["True","False"], c:0, tf:true, exp:"True — HCl (hydrochloric acid) is a strong acid, completely ionizing in water."},
+  {n:164, cat:'truefalse', q:"NaOH is an example of a base.", opts:["True","False"], c:0, tf:true, exp:"True — NaOH (sodium hydroxide) is a strong base, completely dissociating in water."},
+  {n:165, cat:'truefalse', q:"Hydrates contain water molecules in their structure.", opts:["True","False"], c:0, tf:true, exp:"True — hydrates are salts with water molecules trapped in the crystal lattice (e.g. CuSO₄·5H₂O)."},
+  {n:166, cat:'truefalse', q:"The suffix 'ic' is used for acids with less oxygen.", opts:["True","False"], c:1, tf:true, exp:"False — 'ic' suffix = MORE oxygen (e.g. H₂SO₄ = sulfuric acid). 'ous' = FEWER oxygen (e.g. H₂SO₃ = sulfurous)."},
+  {n:167, cat:'truefalse', q:"The suffix 'ous' is used for acids with fewer oxygen atoms.", opts:["True","False"], c:0, tf:true, exp:"True — 'ous' = fewer oxygen atoms (e.g. H₂SO₃ = sulfurous acid vs H₂SO₄ = sulfuric acid)."},
+  {n:168, cat:'truefalse', q:"Salts are formed from the reaction of an acid and a base.", opts:["True","False"], c:0, tf:true, exp:"True — neutralization: Acid + Base → Salt + Water."},
+  {n:169, cat:'truefalse', q:"A neutralization reaction produces salt and water.", opts:["True","False"], c:0, tf:true, exp:"True — e.g. HCl + NaOH → NaCl (salt) + H₂O (water)."},
+  {n:170, cat:'truefalse', q:"All molecules are ions.", opts:["True","False"], c:1, tf:true, exp:"False — most molecules are electrically neutral (not ions). Only ions are charged particles."},
+  {n:171, cat:'truefalse', q:"Molarity (M) is defined as moles of solute per liter of solution.", opts:["True","False"], c:0, tf:true, exp:"True — M = n/V where n = moles of solute and V = volume of solution in liters."},
+  {n:172, cat:'truefalse', q:"Molality depends on volume, so temperature changes affect it.", opts:["True","False"], c:1, tf:true, exp:"False — molality depends on MASS of solvent (kg), NOT volume → unaffected by temperature."},
+  {n:173, cat:'truefalse', q:"Molar mass of NaCl (Na=23, Cl=35.5) is 58.5 g/mol.", opts:["True","False"], c:0, tf:true, exp:"True — molar mass NaCl = 23 + 35.5 = 58.5 g/mol."},
+  {n:174, cat:'truefalse', q:"For water (H₂O), molar mass is 18 g/mol.", opts:["True","False"], c:0, tf:true, exp:"True — H₂O = (2×1) + 16 = 18 g/mol. So 18 g of water = 1 mole."},
+  {n:175, cat:'truefalse', q:"Molality is independent of temperature while molarity is not.", opts:["True","False"], c:0, tf:true, exp:"True — molality uses mass (kg) which doesn't change with temperature; molarity uses volume which does."},
+];
+
+let selCat='all', questions=[], answered=0, score=0, wrong=0;
+
+function updateCount() {
+  let pool = selCat==='all' ? ALL : ALL.filter(q=>q.cat===selCat);
+  document.getElementById('qCount').textContent = pool.length;
+}
+
+function selectCat(cat, btn) {
+  selCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updateCount();
+}
+
+function startQuiz() {
+  let pool = selCat==='all' ? [...ALL] : ALL.filter(q=>q.cat===selCat);
+  questions = pool;
+  answered=0; score=0; wrong=0;
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('resultsBox').style.display='none';
+  document.getElementById('quizWrapper').style.display='block';
+  document.getElementById('stickyBar').style.display='block';
+  updateSticky();
+  renderCards();
+}
+
+function renderCards() {
+  const container = document.getElementById('cardsContainer');
+  container.innerHTML='';
+  questions.forEach((q,i)=>{
+    const card = document.createElement('div');
+    card.className='q-card'; card.id='card-'+i;
+    card.style.animationDelay=Math.min(i*0.02,0.5)+'s';
+    const catLabel = CAT_LABELS[q.cat]||'';
+    const typeTag = q.tf
+      ? `<div class="tf-tag">✅ True / False</div>`
+      : `<div class="cat-tag">${catLabel}</div>`;
+    const optsHtml = q.opts.map((o,li)=>`
+      <button class="opt" data-orig="${li}" onclick="checkAns(${i},${li},${q.c})">
+        <span class="opt-letter">${q.tf ? (li===0?'T':'F') : LETTERS[li]}</span>
+        ${o}
+      </button>`).join('');
+    card.innerHTML=`
+      <div class="q-header">
+        <div class="q-num">Q${q.n}</div>
+        ${typeTag}
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="opts" id="opts-${i}">${optsHtml}</div>
+      <div class="q-feedback" id="fb-${i}"></div>`;
+    container.appendChild(card);
+  });
+  document.getElementById('submitBtn').disabled=true;
+}
+
+function checkAns(qIdx, chosen, correct) {
+  const optsDiv=document.getElementById('opts-'+qIdx);
+  if(optsDiv.querySelector('.correct,.wrong')) return;
+  const isOk=parseInt(chosen)===parseInt(correct);
+  Array.from(optsDiv.querySelectorAll('.opt')).forEach(btn=>{
+    btn.disabled=true;
+    if(parseInt(btn.dataset.orig)===parseInt(correct)) btn.classList.add('correct');
+    else if(parseInt(btn.dataset.orig)===parseInt(chosen)&&!isOk) btn.classList.add('wrong');
+  });
+  const fb=document.getElementById('fb-'+qIdx);
+  fb.style.display='block';
+  fb.className='q-feedback '+(isOk?'correct':'wrong');
+  fb.innerHTML=`<strong>${isOk?'✅ Correct!':'❌ Wrong.'}</strong><br><div class="exp">${questions[qIdx].exp}</div>`;
+  document.getElementById('card-'+qIdx).classList.add(isOk?'answered-correct':'answered-wrong');
+  if(isOk) score++; else wrong++;
+  answered++;
+  updateSticky();
+  if(answered===questions.length){
+    document.getElementById('submitBtn').disabled=false;
+    setTimeout(()=>document.getElementById('submitBtn').scrollIntoView({behavior:'smooth',block:'center'}),400);
+  }
+}
+
+function updateSticky() {
+  const total=questions.length;
+  const pct=answered>0?Math.round(score/answered*100):0;
+  document.getElementById('sNum').textContent=`${answered}/${total} answered`;
+  document.getElementById('sC').textContent=`✅ ${score}`;
+  document.getElementById('sW').textContent=`❌ ${wrong}`;
+  document.getElementById('sP').textContent=`📊 ${pct}%`;
+  document.getElementById('sFill').style.width=(total>0?Math.round(answered/total*100):0)+'%';
+}
+
+function showResults() {
+  const total=questions.length, pct=Math.round(score/total*100);
+  document.getElementById('rScore').textContent=score;
+  document.getElementById('rTotal').textContent=total;
+  document.getElementById('rC').textContent=score;
+  document.getElementById('rW').textContent=wrong;
+  document.getElementById('rP').textContent=pct+'%';
+  setTimeout(()=>{ document.getElementById('ringFg').style.strokeDashoffset=402-(402*pct/100); },100);
+  document.getElementById('rMsg').textContent=
+    pct>=90?'🌟 Excellent! You mastered General Chemistry!':
+    pct>=75?'👏 Very Good! Great effort, keep going!':
+    pct>=60?'👍 Good! Review your mistakes and try again!':'📚 You need more revision — you can do it!';
+  const rev=document.getElementById('reviewDiv');
+  rev.innerHTML='<h3>📋 Review Wrong Answers</h3>';
+  let hasWrong=false;
+  questions.forEach((q,i)=>{
+    const card=document.getElementById('card-'+i);
+    if(card&&card.classList.contains('answered-wrong')){
+      hasWrong=true;
+      rev.innerHTML+=`<div class="rev-item wrong">
+        <div class="rt">❌ Q${q.n}: ${q.q}</div>
+        <div>✅ Correct Answer: <strong>${q.opts[q.c]}</strong></div>
+        <div class="exp">${q.exp}</div>
+      </div>`;
+    }
+  });
+  if(!hasWrong) rev.innerHTML='<p style="color:#10b981;text-align:center;padding:24px;font-size:1.1em;">🎉 All correct! Outstanding!</p>';
+  document.getElementById('resultsBox').style.display='block';
+  document.getElementById('resultsBox').scrollIntoView({behavior:'smooth'});
+}
+
+function goHome() {
+  document.getElementById('quizWrapper').style.display='none';
+  document.getElementById('stickyBar').style.display='none';
+  document.getElementById('startScreen').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+window.onload=()=>{ updateCount(); };
+</script>
+</body>
+</html>
